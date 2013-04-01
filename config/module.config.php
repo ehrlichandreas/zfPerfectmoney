@@ -19,4 +19,10 @@ return array(
             'units' => 'USD'
         ),
     ),
+
+    'view_manager' => array(
+        'strategies' => array(
+            'ViewJsonStrategy'
+        )
+    )
 );
