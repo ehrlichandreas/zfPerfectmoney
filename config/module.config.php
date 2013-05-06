@@ -13,16 +13,49 @@ return array(
         'payment' => array(
             // route or url
             'api_url' => 'https://perfectmoney.com/api/step1.asp',
-            'status_url' => 'deposit/perfectmoney/callback',
+            'status_url' => 'perfectmoney/status',
             'payment_url' => 'home',
             'nopayment_url' => 'home',
             'units' => 'USD'
         ),
     ),
 
+    'controllers' => array(
+        'invokables' => array(
+            'ggPerfectmoney\Controller\Deposit' => 'ggPerfectmoney\Controller\DepositController',
+        )
+    ),
+
+    'router' => array(
+        'routes' => array(
+            'perfectmoney' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/perfectmoney'
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'status' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/status',
+                            'defaults' => array(
+                                'controller' => 'ggPerfectmoney\Controller\Deposit',
+                                'action' => 'status'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    ),
+
     'view_manager' => array(
         'strategies' => array(
             'ViewJsonStrategy'
+        ),
+        'template_path_stack' => array(
+            'ggPerfectmoney' => __DIR__ . '/../view'
         )
     )
 );
