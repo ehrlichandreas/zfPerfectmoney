@@ -37,14 +37,10 @@ class DepositController extends AbstractActionController
     public function depositAction()
     {
         // display debugging form
-        $form = $this->getPaymentForm();
+        $form = $this->getStatusForm();
 
         // set action
         $form->setAttribute('action', $this->url()->fromRoute('perfectmoney/status'));
-
-        // add fake hash
-        $form->add(new Form\Element\Text('V2_HASH'));
-        $form->get('V2_HASH')->setValue('test');
 
         // unhide all elements
         foreach ($form->getElements() as $elem) {
