@@ -1,4 +1,6 @@
 <?php
+$merchantName = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'Default Merchant Name';
+
 return array(
     'ggPerfectmoney' => array(
         // Admin account
@@ -7,7 +9,7 @@ return array(
             'password' => 'dadada777',
             'UAccount' => 'U2386165',
             'apiKey'   => 'Dead',
-            'name'     => $_SERVER['SERVER_NAME']
+            'name'     => $merchantName
         ),
 
         'payment' => array(
