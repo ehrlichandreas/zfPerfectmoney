@@ -9,27 +9,24 @@ class DepositController extends AbstractActionController
 {
     public function statusAction()
     {
-        $testing = false;
-        $apiKey = 'ahr2eeNohr7ka8ooToBi';
-
         if ($this->getRequest()->isPost()) {
-            $data = $this->getRequest()->getPost();
-            if (isset($data['test']) && $data['test']) {
-                $testing = true;
-            }
-
             $form = $this->getStatusForm();
-            $form->setData($data);
+            $form->setData($this->getRequest()->getPost());
 
             if ($form->isValid()) {
+                // trigger event
+                $this->getEventManager()->trigger('perfectmoney.payment', $form);
                 $output['status'] = 'OK';
             } else {
                 $output['status'] = $form->getMessages();
             }
             $output['data'] = $form->getData();
+
+            return new JsonModel($output);
+        } else {
+            $this->getResponse()->setStatusCode(404);
         }
 
-        return new JsonModel($output);
     }
 
     public function depositAction()
