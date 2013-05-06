@@ -3,12 +3,33 @@ namespace ggPerfectmoney\Controller;
 
 use Zend\Form;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 
 class DepositController extends AbstractActionController
 {
     public function statusAction()
     {
-        return $this->getResponse();
+        $testing = false;
+        $apiKey = 'ahr2eeNohr7ka8ooToBi';
+
+        if ($this->getRequest()->isPost()) {
+            $data = $this->getRequest()->getPost();
+            if (isset($data['test']) && $data['test']) {
+                $testing = true;
+            }
+
+            $form = $this->getStatusForm();
+            $form->setData($data);
+
+            if ($form->isValid()) {
+                $output['status'] = 'OK';
+            } else {
+                $output['status'] = $form->getMessages();
+            }
+            $output['data'] = $form->getData();
+        }
+
+        return new JsonModel($output);
     }
 
     public function depositAction()
@@ -53,5 +74,13 @@ class DepositController extends AbstractActionController
     public function getPaymentForm()
     {
         return $this->getServiceLocator()->get('ggperfectmoney_payment_form');
+    }
+
+    /**
+     * @return \ggPerfectmoney\Form\StatusForm
+     */
+    public function getStatusForm()
+    {
+        return $this->getServiceLocator()->get('ggperfectmoney_status_form');
     }
 }
