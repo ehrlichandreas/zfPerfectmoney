@@ -15,7 +15,7 @@ class DepositController extends AbstractActionController
 
             if ($form->isValid()) {
                 // trigger event
-                $this->getEventManager()->trigger('perfectmoney.payment', $form);
+                $this->getEventManager()->trigger('payment', $form);
                 $output['status'] = 'OK';
             } else {
                 $output['status'] = $form->getMessages();
