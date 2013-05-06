@@ -95,6 +95,11 @@ class StatusForm extends PaymentForm implements InputFilter\InputFilterProviderI
         );
     }
 
+    public function isTesting()
+    {
+        return isset($this->data['test']) && $this->data['test'];
+    }
+
     public static function generateHash($values, $key)
     {
         $hash = md5(implode(':', array(
