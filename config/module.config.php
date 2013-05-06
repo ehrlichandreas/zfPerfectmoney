@@ -44,6 +44,16 @@ return array(
                                 'action' => 'status'
                             )
                         )
+                    ),
+                    'deposit' => array(
+                        'type' => '/literal',
+                        'options' => array(
+                            'route' => '/deposit',
+                            'defaults' => array(
+                                'controller' => 'ggPerfectmoney\Controller\Deposit',
+                                'action' => 'deposit'
+                            )
+                        )
                     )
                 )
             )
