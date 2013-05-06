@@ -13,12 +13,15 @@ class DepositController extends AbstractActionController
             $form = $this->getStatusForm();
             $form->setData($this->getRequest()->getPost());
 
+            $this->getEventManager()->trigger('payment', $form);
+
             if ($form->isValid()) {
                 // trigger event
-                $this->getEventManager()->trigger('payment', $form);
+                $this->getEventManager()->trigger('payment.success', $form);
                 $output['status'] = 'OK';
             } else {
                 $this->getResponse()->setStatusCode(500);
+                $this->getEventManager()->trigger('payment.error', $form);
                 $output['status'] = $form->getMessages();
             }
             $output['data'] = $form->getData();
