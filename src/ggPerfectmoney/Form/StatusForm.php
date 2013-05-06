@@ -99,17 +99,17 @@ class StatusForm extends PaymentForm implements InputFilter\InputFilterProviderI
 
     public static function generateHash($values, $key)
     {
-        $hash = md5(implode(':', array(
+        $hash = strtoupper(md5(implode(':', array(
             $values['PAYMENT_ID'],
             $values['PAYEE_ACCOUNT'],
             $values['PAYMENT_AMOUNT'],
             $values['PAYMENT_UNITS'],
             $values['PAYMENT_BATCH_NUM'],
             $values['PAYER_ACCOUNT'],
-            $key,
+            strtoupper(md5($key)),
             $values['TIMESTAMPGMT']
-        )));
+        ))));
 
-        return strtoupper($hash);
+        return $hash;
     }
 }
