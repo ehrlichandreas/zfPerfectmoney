@@ -68,6 +68,9 @@ class Module implements ModuleManager\Feature\AutoloaderProviderInterface,
                 },
                 'ggperfectmoney_status_form' => function ($sm) {
                     return new Form\StatusForm(null, $sm->get('ggperfectmoney_module_options'));
+                },
+                'ggperfectmoney_transaction' => function ($sm) {
+                    return new Transaction($sm->get('ggperfectmoney_module_options'));
                 }
             )
         );

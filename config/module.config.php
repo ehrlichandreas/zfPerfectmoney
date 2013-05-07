@@ -20,6 +20,10 @@ return array(
             'nopayment_url' => 'home',
             'units' => 'USD'
         ),
+
+        'transaction' => array(
+            'url' => 'https://perfectmoney.com/acct/confirm.asp'
+        )
     ),
 
     'controllers' => array(
