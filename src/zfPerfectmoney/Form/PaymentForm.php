@@ -55,6 +55,13 @@ class PaymentForm extends Form\Form
             )
         ));
         $this->add(array(
+            'name' => 'BAGGAGE_FIELDS',
+            'attributes' => array(
+                'type' => 'hidden'
+            )
+        ));
+
+        $this->add(array(
             'name' => 'PAYMENT_AMOUNT'
         ));
         $this->add(array(
