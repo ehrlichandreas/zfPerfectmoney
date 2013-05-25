@@ -1,5 +1,5 @@
 <?php
-namespace ggPerfectmoney\Controller;
+namespace zfPerfectmoney\Controller;
 
 use Zend\Form;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -67,18 +67,18 @@ class DepositController extends AbstractActionController
     }
 
     /**
-     * @return \ggPerfectmoney\Form\PaymentForm
+     * @return \zfPerfectmoney\Form\PaymentForm
      */
     public function getPaymentForm()
     {
-        return $this->getServiceLocator()->get('ggperfectmoney_payment_form');
+        return $this->getServiceLocator()->get('zfPerfectmoney_payment_form');
     }
 
     /**
-     * @return \ggPerfectmoney\Form\StatusForm
+     * @return \zfPerfectmoney\Form\StatusForm
      */
     public function getStatusForm()
     {
-        return $this->getServiceLocator()->get('ggperfectmoney_status_form');
+        return $this->getServiceLocator()->get('zfPerfectmoney_status_form');
     }
 }

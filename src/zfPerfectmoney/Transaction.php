@@ -1,5 +1,5 @@
 <?php
-namespace ggPerfectmoney;
+namespace zfPerfectmoney;
 
 use Zend\Http;
 use Zend\Dom;

@@ -2,7 +2,7 @@
 $merchantName = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'Default Merchant Name';
 
 return array(
-    'ggPerfectmoney' => array(
+    'zfPerfectmoney' => array(
         // Admin account
         'merchant' => array(
             'id'       => '171397',
@@ -28,7 +28,7 @@ return array(
 
     'controllers' => array(
         'invokables' => array(
-            'ggPerfectmoney\Controller\Deposit' => 'ggPerfectmoney\Controller\DepositController',
+            'zfPerfectmoney\Controller\Deposit' => 'zfPerfectmoney\Controller\DepositController',
         )
     ),
 
@@ -46,7 +46,7 @@ return array(
                         'options' => array(
                             'route' => '/status',
                             'defaults' => array(
-                                'controller' => 'ggPerfectmoney\Controller\Deposit',
+                                'controller' => 'zfPerfectmoney\Controller\Deposit',
                                 'action' => 'status'
                             )
                         )
@@ -56,7 +56,7 @@ return array(
                         'options' => array(
                             'route' => '/deposit',
                             'defaults' => array(
-                                'controller' => 'ggPerfectmoney\Controller\Deposit',
+                                'controller' => 'zfPerfectmoney\Controller\Deposit',
                                 'action' => 'deposit'
                             )
                         )
@@ -71,7 +71,7 @@ return array(
             'ViewJsonStrategy'
         ),
         'template_path_stack' => array(
-            'ggPerfectmoney' => __DIR__ . '/../view'
+            'zfPerfectmoney' => __DIR__ . '/../view'
         )
     )
 );

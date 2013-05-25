@@ -1,6 +1,6 @@
 <?php
 
-namespace ggPerfectmoney;
+namespace zfPerfectmoney;
 
 use Zend\Mvc\Router;
 use Zend\ModuleManager;
@@ -9,7 +9,7 @@ class Module implements ModuleManager\Feature\AutoloaderProviderInterface,
                         ModuleManager\Feature\ConfigProviderInterface,
                         ModuleManager\Feature\ServiceProviderInterface
 {
-    const CONFIG_KEY = 'ggPerfectmoney';
+    const CONFIG_KEY = 'zfPerfectmoney';
 
     public function getAutoloaderConfig()
     {
@@ -34,7 +34,7 @@ class Module implements ModuleManager\Feature\AutoloaderProviderInterface,
     {
         return array(
             'factories' => array(
-                'ggperfectmoney_module_options' => function ($sm) {
+                'zfPerfectmoney_module_options' => function ($sm) {
                     $config = $sm->get('Config');
                     if (isset($config[self::CONFIG_KEY])) {
                         $config = $config[self::CONFIG_KEY];
@@ -63,14 +63,14 @@ class Module implements ModuleManager\Feature\AutoloaderProviderInterface,
                     return $config;
                 },
 
-                'ggperfectmoney_payment_form' => function ($sm) {
-                    return new Form\PaymentForm(null, $sm->get('ggperfectmoney_module_options'));
+                'zfPerfectmoney_payment_form' => function ($sm) {
+                    return new Form\PaymentForm(null, $sm->get('zfPerfectmoney_module_options'));
                 },
-                'ggperfectmoney_status_form' => function ($sm) {
-                    return new Form\StatusForm(null, $sm->get('ggperfectmoney_module_options'));
+                'zfPerfectmoney_status_form' => function ($sm) {
+                    return new Form\StatusForm(null, $sm->get('zfPerfectmoney_module_options'));
                 },
-                'ggperfectmoney_transaction' => function ($sm) {
-                    return new Transaction($sm->get('ggperfectmoney_module_options'));
+                'zfPerfectmoney_transaction' => function ($sm) {
+                    return new Transaction($sm->get('zfPerfectmoney_module_options'));
                 }
             )
         );

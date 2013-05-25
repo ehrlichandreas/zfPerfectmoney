@@ -1,6 +1,6 @@
 <?php
 
-namespace ggPerfectmoney\Form;
+namespace zfPerfectmoney\Form;
 
 use Zend\Form;
 
