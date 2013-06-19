@@ -35,7 +35,9 @@ class DepositController extends AbstractActionController
                     $this,
                     array('data' => $data, 'form' => $form)
                 );
-                $output['status'] = $form->getMessages();
+                $output['status'] = [
+                    'errors' => $form->getMessages()
+                ];
             }
             $output['data'] = $form->getData();
 
