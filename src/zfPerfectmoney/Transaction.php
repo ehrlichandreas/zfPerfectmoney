@@ -40,6 +40,13 @@ class Transaction
     public function request()
     {
         $httpClient = $this->getHttpClient();
+        $this->httpClient->setParameterGet(array(
+            'AccountID'     => $this->options['merchant']['id'],
+            'PassPhrase'    => $this->options['merchant']['password'],
+            'Payer_Account' => $this->options['merchant']['UAccount'],
+            'Payee_Account' => $this->getPayee(),
+            'Amount'        => $this->getAmount()
+        ));
         $httpClient->send();
 
         // DOM will not work here, because PM programmers does not
@@ -73,13 +80,6 @@ class Transaction
             $this->httpClient->setOptions(array(
                 'adapter'   => (new Http\Client\Adapter\Curl())->setCurlOption(CURLOPT_SSLVERSION, 3),
                 'keepalive' => true
-            ));
-            $this->httpClient->setParameterGet(array(
-                'AccountID'     => $this->options['merchant']['id'],
-                'PassPhrase'    => $this->options['merchant']['password'],
-                'Payer_Account' => $this->options['merchant']['UAccount'],
-                'Payee_Account' => $this->getPayee(),
-                'Amount'        => $this->getAmount()
             ));
         }
 
